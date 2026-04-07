@@ -30,8 +30,8 @@ logging.basicConfig(
 )
 log = logging.getLogger("rwa-bot")
 
-DISCORD_TOKEN   = os.getenv("DISCORD_TOKEN")
-LOG_CHANNEL     = os.getenv("LOG_CHANNEL_NAME", "bot-logs")
+DISCORD_TOKEN   = os.getenv("TOKEN")
+LOG_CHANNEL     = os.getenv("LOG_CHANNEL_NAME", "mod-logs")
 FIREBASE_CREDS  = os.getenv("FIREBASE_CREDENTIALS", "firebase.json")
 
 # ─────────────────────────────────────────────
