@@ -20,6 +20,11 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 
 # ─────────────────────────────────────────────
+# MASTER ADMINS
+# ─────────────────────────────────────────────
+ALLOWED_ADMIN_IDS = [1340332911668498473, 687733937367547929]
+
+# ─────────────────────────────────────────────
 # ENV + LOGGING
 # ─────────────────────────────────────────────
 load_dotenv()
@@ -381,8 +386,9 @@ async def cmd_rank(
     rank_title: str,
 ):
     await ctx.defer(ephemeral=True)
-    if not await has_staff_permission(ctx):
-        await ctx.followup.send("❌ You don't have permission to use this command.", ephemeral=True)
+# STRICT ID CHECK HERE
+    if ctx.author.id not in ALLOWED_ADMIN_IDS:
+        await ctx.followup.send("❌ Only specific Bot Owners can rank players.", ephemeral=True)
         return
 
     async with aiohttp.ClientSession() as session:
@@ -437,8 +443,9 @@ async def cmd_rank(
 @option("roblox_name", description="Roblox username to unrank")
 async def cmd_unrank(ctx: discord.ApplicationContext, roblox_name: str):
     await ctx.defer(ephemeral=True)
-    if not await has_staff_permission(ctx):
-        await ctx.followup.send("❌ You don't have permission.", ephemeral=True)
+  # STRICT ID CHECK HERE
+    if ctx.author.id not in ALLOWED_ADMIN_IDS:
+        await ctx.followup.send("❌ Only specific Bot Owners can rank players.", ephemeral=True)
         return
 
     async with aiohttp.ClientSession() as session:
@@ -488,12 +495,14 @@ async def cmd_unrank(ctx: discord.ApplicationContext, roblox_name: str):
 #   /addstaffrole
 # ════════════════════════════════════════════
 # ─────────────────────────────────────────────
-@bot.slash_command(name="addstaffrole", description="Add a Discord role that can run staff commands. (Admin only)")
+@bot.slash_command(name="addstaffrole", description="Add a Discord role that can run staff commands. (Master Admin only)")
 @option("role_name", description="Discord role name to grant staff access")
 async def cmd_addstaffrole(ctx: discord.ApplicationContext, role_name: str):
     await ctx.defer(ephemeral=True)
-    if not ctx.author.guild_permissions.administrator:
-        await ctx.followup.send("❌ Only server admins can configure staff roles.", ephemeral=True)
+    
+    # STRICT ID CHECK HERE
+    if ctx.author.id not in ALLOWED_ADMIN_IDS:
+        await ctx.followup.send("❌ Only  Bot owners can configure staff roles.", ephemeral=True)
         return
 
     # Validate the role actually exists in this guild
@@ -527,8 +536,9 @@ async def cmd_suspend(
     reason: str = "No reason provided",
 ):
     await ctx.defer(ephemeral=True)
-    if not await has_staff_permission(ctx):
-        await ctx.followup.send("❌ You don't have permission.", ephemeral=True)
+   # STRICT ID CHECK HERE
+    if ctx.author.id not in ALLOWED_ADMIN_IDS:
+        await ctx.followup.send("❌ Only specific Bot Owners can rank players.", ephemeral=True)
         return
 
     async with aiohttp.ClientSession() as session:
@@ -583,8 +593,9 @@ async def cmd_suspend(
 @option("roblox_name", description="Roblox username to unsuspend")
 async def cmd_unsuspend(ctx: discord.ApplicationContext, roblox_name: str):
     await ctx.defer(ephemeral=True)
-    if not await has_staff_permission(ctx):
-        await ctx.followup.send("❌ You don't have permission.", ephemeral=True)
+    # STRICT ID CHECK HERE
+    if ctx.author.id not in ALLOWED_ADMIN_IDS:
+        await ctx.followup.send("❌ Only specific Bot Owners can rank players.", ephemeral=True)
         return
 
     async with aiohttp.ClientSession() as session:
@@ -637,8 +648,9 @@ async def cmd_unsuspend(ctx: discord.ApplicationContext, roblox_name: str):
 @option("roblox_user", description="Roblox username to check")
 async def cmd_altcheck(ctx: discord.ApplicationContext, roblox_user: str):
     await ctx.defer()
-    if not await has_staff_permission(ctx):
-        await ctx.followup.send("❌ You don't have permission.", ephemeral=True)
+   # STRICT ID CHECK HERE
+    if ctx.author.id not in ALLOWED_ADMIN_IDS:
+        await ctx.followup.send("❌ Only specific Bot Owners can rank players.", ephemeral=True)
         return
 
     async with aiohttp.ClientSession() as session:
