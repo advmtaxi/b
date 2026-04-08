@@ -896,8 +896,8 @@ async def on_application_command_error(ctx: discord.ApplicationContext, error: d
 # KEEPALIVE  (for Hugging Face Spaces)
 # ─────────────────────────────────────────────
 async def keepalive():
-    """Tiny HTTP server so HF Spaces doesn't think the app is dead."""
     from aiohttp import web
+    from backend_verify_routes import register_routes
 
     async def health(_request):
         return web.Response(text="OK")
@@ -905,11 +905,13 @@ async def keepalive():
     app = web.Application()
     app.router.add_get("/", health)
     app.router.add_get("/health", health)
+
+    register_routes(app, db)  # hooks in all /auth/* routes
+
     runner = web.AppRunner(app)
     await runner.setup()
-    site = web.TCPSite(runner, "0.0.0.0", 7860)
-    await site.start()
-    log.info("Keepalive server running on :7860")
+    await web.TCPSite(runner, "0.0.0.0", 7860).start()
+    log.info("Server running on :7860")
 
 # ─────────────────────────────────────────────
 # ENTRY POINT
