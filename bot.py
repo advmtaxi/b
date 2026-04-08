@@ -44,6 +44,7 @@ TEAMS = {
     "Chicago Water":    {"key": "chicago_water"},
     "LA Galaxy WC":     {"key": "la_galaxy_wc"},
     "VK Jug Dubrovnik": {"key": "vk_jug_dubrovnik"},
+    "CD Guadalajara": {"key": "cdguadalajara"},
     "Free Agent":       {"key": "free_agent"},
 }
 TEAM_CHOICES = ["Chicago Water", "LA Galaxy WC", "VK Jug Dubrovnik"]
