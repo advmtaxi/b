@@ -47,7 +47,7 @@ TEAMS = {
     "CD Guadalajara": {"key": "cdguadalajara"},
     "Free Agent":       {"key": "free_agent"},
 }
-TEAM_CHOICES = ["Chicago Water", "LA Galaxy WC", "VK Jug Dubrovnik"]
+TEAM_CHOICES = ["Chicago Water", "LA Galaxy WC", "VK Jug Dubrovnik", "CD Guadalajara"]
 
 def ts() -> str:
     return datetime.now(timezone.utc).isoformat()
