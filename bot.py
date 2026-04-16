@@ -43,11 +43,10 @@ GUILD = [HOME_GUILD_ID]
 TEAMS = {
     "Chicago Water":        {"key": "chicago_water",      "emoji": "<:ChicagoWater:1491161716711755970>"},
     "LA Galaxy WC":         {"key": "la_galaxy_wc",        "emoji": "<:LA_Galaxy_WC:1491162603609653431>"},
-    "VK Jug Dubrovnik":     {"key": "vk_jug_dubrovnik",    "emoji": "<:VKJugDubrovnik:1490635388237381664>"},
+    "Georgian Island":     {"key": "GeorgianIslandWC",    "emoji": "<:GeorgianIslandWC:1492476618101489754>"},
     "CD Guadalajara":       {"key": "cdguadalajara",        "emoji": "<:CDGuadalajara:1491419059005292615>"},
     "Blackburn and Darwen": {"key": "BlackburnandDarwen",  "emoji": "<:BlackburnandDarwen:1492146554629521589>"},
     "Lodz STW":             {"key": "LodzSTW",              "emoji": "<:LodzSTW:1492146983396442268>"},
-    "Neptuns":              {"key": "Neptuns",              "emoji": "<:Neptuns:1492150408150519909>"},
     "Free Agent":           {"key": "free_agent",           "emoji": "🔓"},
 }
 TEAM_CHOICES = [t for t in TEAMS if t != "Free Agent"]
